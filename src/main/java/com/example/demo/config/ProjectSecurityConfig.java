@@ -1,38 +1,16 @@
 package com.example.demo.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
 @Configuration
 public class ProjectSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-        /**
-         * Default configurations which will secure all the requests
-         */
-
-/*
-        http.authorizeRequests()
-                .anyRequest().authenticated()
-                .and().formLogin()
-                .and().httpBasic();
-*/
-
-
-        /**
-         * Custom configurations as per our requirement
-         *      /my-account - Secured
-         *      /my-balance - Secured
-         *      /my-loans - Secured
-         *      /my-cards - Secured
-         *      /notices - Not Secured
-         *      /contact - Not Secured
-         */
-
-/*
         http.authorizeRequests()
                 .antMatchers("/my-account").authenticated()
                 .antMatchers("/my-balance").authenticated()
@@ -42,30 +20,13 @@ public class ProjectSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/contact").permitAll()
                 .and().formLogin()
                 .and().httpBasic();
-*/
-
-
-        /**
-         * Configuration to deny all the requests
-         */
-
-/*
-         http.authorizeRequests()
-                 .anyRequest().denyAll()
-                 .and().formLogin()
-                 .and().httpBasic();
-*/
-
-
-        /**
-         * Configuration to permit all the requests
-         */
-
-		http.authorizeRequests()
-                .anyRequest().permitAll()
-                .and().formLogin()
-                .and().httpBasic();
-
     }
 
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .withUser("admin_login").password("admin_password").authorities("admin").and()
+                .withUser("user_login").password("user_password").authorities("read").and()
+                .passwordEncoder(NoOpPasswordEncoder.getInstance());
+    }
 }
