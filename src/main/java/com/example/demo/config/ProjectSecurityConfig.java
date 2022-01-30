@@ -49,10 +49,22 @@ public class ProjectSecurityConfig extends WebSecurityConfigurerAdapter {
          * Configuration to deny all the requests
          */
 
+/*
          http.authorizeRequests()
                  .anyRequest().denyAll()
                  .and().formLogin()
                  .and().httpBasic();
+*/
+
+
+        /**
+         * Configuration to permit all the requests
+         */
+
+		http.authorizeRequests()
+                .anyRequest().permitAll()
+                .and().formLogin()
+                .and().httpBasic();
 
     }
 
