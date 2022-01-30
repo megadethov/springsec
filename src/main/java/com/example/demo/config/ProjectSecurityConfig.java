@@ -31,6 +31,8 @@ public class ProjectSecurityConfig extends WebSecurityConfigurerAdapter {
          *      /notices - Not Secured
          *      /contact - Not Secured
          */
+
+/*
         http.authorizeRequests()
                 .antMatchers("/my-account").authenticated()
                 .antMatchers("/my-balance").authenticated()
@@ -40,6 +42,17 @@ public class ProjectSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/contact").permitAll()
                 .and().formLogin()
                 .and().httpBasic();
+*/
+
+
+        /**
+         * Configuration to deny all the requests
+         */
+
+         http.authorizeRequests()
+                 .anyRequest().denyAll()
+                 .and().formLogin()
+                 .and().httpBasic();
 
     }
 
