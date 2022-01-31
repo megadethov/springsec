@@ -1,7 +1,7 @@
--- docker run --name springsec-pg-13.3 -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=eazybank -d postgres:13.3
+-- docker run --name springsec-pg-13.3 -p 5432:5432 -e POSTGRES_USER=mega -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=eazybank -d postgres:13.3
 
 -- jdbc:postgresql://localhost:5432/eazybank
--- postgres
+-- mega
 -- postgres
 
 
