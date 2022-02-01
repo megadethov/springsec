@@ -26,9 +26,14 @@ INSERT INTO authorities (username, authority)
 VALUES
 ('user_login', 'write');
 
+-- for custom implementation
 CREATE TABLE customer (
                           id SERIAL PRIMARY KEY,
                           email VARCHAR(50) NOT NULL,
                           pwd VARCHAR(50) NOT NULL,
                           role VARCHAR(50) NOT NULL
 );
+
+INSERT INTO customer (email, pwd, role)
+VALUES
+('custom_email', 'custom_password', 'admin');
