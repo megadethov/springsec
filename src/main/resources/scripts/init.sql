@@ -1,4 +1,4 @@
--- docker run --name springsec-pg-13.3 -p 5432:5432 -e POSTGRES_USER=mega -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=eazybank -d postgres:13.3
+-- docker run -p 5432:5432 -e POSTGRES_USER=mega -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=eazybank -d postgres:13.3
 
 -- jdbc:postgresql://localhost:5432/eazybank
 -- mega
@@ -30,10 +30,11 @@ VALUES
 CREATE TABLE customer (
                           id SERIAL PRIMARY KEY,
                           email VARCHAR(50) NOT NULL,
-                          pwd VARCHAR(50) NOT NULL,
+                          pwd VARCHAR(200) NOT NULL,
                           role VARCHAR(50) NOT NULL
 );
 
 INSERT INTO customer (email, pwd, role)
 VALUES
-('custom_email', 'custom_password', 'admin');
+-- ('custom_email', 'custom_password', 'admin');
+('custom_email', '$2a$12$9PGRfB4QpC0e0P6NDnYNkOhNSlc7Jbjh.PsKsZ0D6.CgIKiwCzcF.', 'admin');
